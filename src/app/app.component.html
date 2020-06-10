@@ -1,0 +1,24 @@
+<div *ngIf="isLoggedIn();">
+    <div class="layout-wrapper layout-static" (click)="onLayoutClick()" [ngClass]="{'layout-static-inactive': staticMenuDesktopInactive,
+                 'layout-mobile-active': staticMenuMobileActive}">
+        <app-topbar></app-topbar>
+        <div class="layout-menu-container" (click)="onMenuClick()">
+            <div class="layout-menu-content">
+                <div class="layout-menu-title">Menu</div>
+                <app-menu></app-menu>
+            </div>
+        </div>
+        <div class="layout-content">
+            <app-breadcrumb></app-breadcrumb>
+            <div class="layout-content-container">
+                <router-outlet></router-outlet>
+            </div>
+            <div class="layout-mask" *ngIf="staticMenuMobileActive"></div>
+        </div>
+    </div>
+    <p-toast [style]="{width: '500px'}"></p-toast>
+</div>
+<div *ngIf="!isLoggedIn();">
+    <app-login></app-login>
+    <p-toast [style]="{width: '500px'}"></p-toast>
+</div>

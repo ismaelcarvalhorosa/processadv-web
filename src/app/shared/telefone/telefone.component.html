@@ -1,0 +1,39 @@
+<form [formGroup]="formTelefone">
+    <div class="ui-fluid">
+        <div class="p-grid">
+            <div class="p-col">
+                Telefone (obrigatório)
+                <input type="text" pInputText formControlName="numero">
+            </div>
+            <div class="p-col-4">
+                Tipo (obrigatório)
+                <p-dropdown [options]="tiposTelefone" formControlName="tipo"></p-dropdown>
+            </div>
+            <div class="p-col-fixed" style='width: 100px'>
+                <br>
+                <button pButton type="button" label="Adicionar" (click)="adicionarTelefone()" class="ui-button-success"></button>
+            </div>
+        </div>
+    </div>
+</form>
+<br>
+Lista de Telefones:
+<br>
+<div *ngFor='let telefone of telefones; let i = index'>
+    <div class="p-grid">
+        <div class="p-col-fixed" style='width: 50px; line-height: 30px'>
+            <span class='pi pi-mobile' style='font-size: xx-large' *ngIf='telefone.tipo === "CELULAR"'></span>
+            <span class='pi pi-briefcase' style='font-size: xx-large' *ngIf='telefone.tipo === "TRABALHO"'></span>
+            <span class='pi pi-lock' style='font-size: xx-large' *ngIf='telefone.tipo === "FIXO"'></span>
+        </div>
+        <div class="p-col-fixed" style='width: 200px; line-height: 30px'>
+            {{ telefone.numero + ' (' + telefone.tipo + ')' }}
+        </div>
+        <div class="p-col-fixed" style='width: 100px; line-height: 30px'>
+            <button pButton type="button" icon="pi pi-trash" (click)="removerTelefone(i)" class="ui-button-secondary"></button>
+        </div>
+    </div>
+</div>
+<div *ngIf='telefones.length === 0' style='padding: 16px'>
+    Nenhum telefone adicionado
+</div>

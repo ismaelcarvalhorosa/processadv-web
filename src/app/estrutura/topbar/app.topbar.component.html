@@ -1,0 +1,15 @@
+<div class="topbar clearfix">
+    <a routerLink='/inicio'>
+        <img
+            width="30px"
+            height="30px"
+            alt="ProcessAdv Logo"
+            src="assets/logo-t.png"
+        />
+    </a>
+    <a class='nome-sistema' routerLink='/inicio'>ProcessAdv</a>
+    <a id="menu-button" href="#" (click)="app.onMenuButtonClick($event)">
+        <i class="pi pi-bars"></i>
+    </a>
+    <app-user-detail [app]='app'></app-user-detail>
+</div>
