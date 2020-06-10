@@ -1,0 +1,43 @@
+<div class='controles'>
+    <button pButton type="button" label="Pesquisar" routerLink='/usuario/pesquisa'
+        class="ui-button-secondary"></button>
+    <button pButton type="button" label="Novo" (click)="novo()" class="ui-button-secondary"></button>
+    <button pButton type="button" label="Excluir" (click)="excluir()" class="ui-button-danger"
+        *ngIf='editando'></button>
+</div>
+<p-panel header="Identificação">
+    <form [formGroup]="formUsuario">
+        <div class="ui-fluid">
+            <div class="p-grid">
+                <div class="p-col-2">
+                    <span>Código</span>
+                    <input type="text" pInputText formControlName="usuario_id">
+                </div>
+                <div class="p-col-7">
+                    <span style='color: blue;'>Nome</span>
+                    <input type="text" pInputText formControlName="usuario_nome" maxlength="60">
+                </div>
+                <div class="p-col-3">
+                    <span style='color: blue;'>Login</span>
+                    <input type="text" pInputText formControlName="usuario_login" maxlength="´60">
+                </div>
+                <div class="p-col-3">
+                    <span style='color: blue;'>Senha</span>
+                    <input type="password" pInputText formControlName="usuario_senha" maxlength="60">
+                </div>
+                <div>
+                    <span>Logotipo</span>
+                    <br>
+                    <img [src]="imageSrc" style="max-width:300px;max-height:300px"/>
+                    <br>
+                    <input formControlName="logo" type="file" accept="image/*" (change)="handleInputChange($event)" />
+                </div>
+            </div>
+        </div>
+    </form>
+</p-panel>
+<br>
+<div class='controles'>
+    <button pButton type="button" label="Salvar" [disabled]="formUsuario.invalid" (click)="salvar()" class="ui-button-success"></button>
+    <button pButton type="button" label="Cancelar" (click)="cancelar()" class="ui-button-secondary"></button>
+</div>

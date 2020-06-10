@@ -1,0 +1,261 @@
+<div class='controles'>
+    <button pButton type="button" label="Pesquisar" routerLink='/cliente/pesquisa' class="ui-button-secondary"></button>
+    <button pButton type="button" label="Novo" (click)="novo()" class="ui-button-secondary"></button>
+    <button pButton type="button" label="Excluir" (click)="excluir()" class="ui-button-danger"
+        *ngIf='editando'></button>
+</div>
+<form [formGroup]="formCliente">
+    <p-tabView>
+        <p-tabPanel header="Informações básicas">
+            <p-panel header="Informações básicas">
+                <div class="ui-fluid">
+                    <div class="p-grid">
+                        <div class="p-col-2">
+                            <span>Código</span>
+                            <input type="text" pInputText formControlName="cliente_id" maxlength="60">
+                        </div>
+                        <div class="p-col-6">
+                            <span>Nome</span>
+                            <input type="text" pInputText formControlName="NOME" maxlength="60">
+                        </div>
+                        <div class="p-col-3">
+                            <span>Data Nascimento</span>
+                            <p-calendar formControlName="DATA_NASCIMENTO" dateFormat="dd/mm/yy" [locale]="ptBR"
+                                [showIcon]="true"></p-calendar>
+                        </div>
+                        <div class="p-col-2">
+                            <span>RG</span>
+                            <input type="text" pInputText formControlName="RG" maxlength="20">
+                        </div>
+                        <div class="p-col-3">
+                            <span>Órgão</span>
+                            <input type="text" pInputText formControlName="ORGAO" maxlength="20">
+                        </div>
+                        <div class="p-col-3">
+                            <span>Nacionalidade</span>
+                            <input type="text" pInputText formControlName="NACIONALIDADE" maxlength="60">
+                        </div>
+                        <div class="p-col-2">
+                            <p-radioButton formControlName="docs" label="CPF " value="CPF" [(ngModel)]="docSelected">
+                            </p-radioButton>
+                            <p-radioButton formControlName="docs" label="CNPJ " value="CNPJ" [(ngModel)]="docSelected">
+                            </p-radioButton>
+                        </div>
+                        <div class="p-col-2" *ngIf="docSelected === 'CPF'">
+                            <span>CPF</span>
+                            <p-inputMask formControlName="CPF" mask="999.999.999-99" unmask='true'></p-inputMask>
+                        </div>
+                        <div class="p-col-2" *ngIf="docSelected === 'CNPJ'">
+                            <span>CNPJ</span>
+                            <p-inputMask formControlName="CNPJ" mask="99.999.999/9999-99" unmask='true'></p-inputMask>
+                        </div>
+                        <div class="p-col-3">
+                            <span>Razão Social</span>
+                            <input type="text" pInputText formControlName="RAZAO_SOCIAL" maxlength="80">
+                        </div>
+                        <div class="p-col-3">
+                            <span>Estado Civil</span>
+                            <p-dropdown [options]="estadosCivis" optionLabel="estado" formControlName="ESTADO_CIVIL"
+                                [(ngModel)]="estadoCivilSelecionado"></p-dropdown>
+                        </div>
+                        <div class="p-col-3">
+                            <span>Cônjuge</span>
+                            <input type="text" pInputText formControlName="CONJUGUE" maxlength="60">
+                        </div>
+                        <div class="p-col-3">
+                            <span>Profissão</span>
+                            <input type="text" pInputText formControlName="PROFISSAO" maxlength="60">
+                        </div>
+                        <div class="p-col-3">
+                            <span>Pai</span>
+                            <input type="text" pInputText formControlName="PAI" maxlength="60">
+                        </div>
+                        <div class="p-col-3">
+                            <span>Mãe</span>
+                            <input type="text" pInputText formControlName="MAE" maxlength="60">
+                        </div>
+                        <div class="p-col-3">
+                            <span>Aposentado</span>
+                            <p-dropdown [options]="aposentados" optionLabel="aposentado" formControlName="APOSENTADO"
+                                [(ngModel)]="aposentadoSelecionado" (onChange)="onSelectAposentado()"></p-dropdown>
+                        </div>
+                        <div class="p-col-3">
+                            <span>Aposentadoria</span>
+                            <p-dropdown [options]="aposentadorias" optionLabel="tipo" formControlName="TIPO_APOSENTA"
+                                [(ngModel)]="aposentadoriaSelecionada"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+            <p-panel header="Dados previdenciários">
+                <div class="ui-fluid">
+                    <div class="p-grid">
+                        <div class="p-col-4">
+                            <span>NB</span>
+                            <input type="text" pInputText formControlName="NB" maxlength="60">
+                        </div>
+                        <div class="p-col-2">
+                            <span>ESP</span>
+                            <input type="text" pInputText formControlName="ESP" maxlength="3">
+                        </div>
+                        <div class="p-col-3">
+                            <span>DIB</span>
+                            <p-calendar formControlName="DIB" dateFormat="dd/mm/yy" [locale]="ptBR" [showIcon]="true">
+                            </p-calendar>
+                        </div>
+                        <div class="p-col-3">
+                            <span>DER</span>
+                            <p-calendar formControlName="DER" dateFormat="dd/mm/yy" [locale]="ptBR" [showIcon]="true">
+                            </p-calendar>
+                        </div>
+                        <div class="p-col-3">
+                            <span>DCB</span>
+                            <p-calendar formControlName="DCB" dateFormat="dd/mm/yy" [locale]="ptBR" [showIcon]="true">
+                            </p-calendar>
+                        </div>
+                        <div class="p-col-3">
+                            <span>DDB</span>
+                            <p-calendar formControlName="DDB" dateFormat="dd/mm/yy" [locale]="ptBR" [showIcon]="true">
+                            </p-calendar>
+                        </div>
+                        <div class="p-col-4">
+                            <span>NIT</span>
+                            <input type="text" pInputText formControlName="NIT" maxlength="60">
+                        </div>
+                        <div class="p-col-4">
+                            <span>RMI</span>
+                            <input type="text" pInputText formControlName="RMI" maxlength="10">
+                        </div>
+                        <div class="p-col-4">
+                            <span>SB</span>
+                            <input type="text" pInputText formControlName="SB" maxlength="10">
+                        </div>
+                        <div class="p-col-3">
+                            <span>DIP</span>
+                            <p-calendar formControlName="DIP" dateFormat="dd/mm/yy" [locale]="ptBR" [showIcon]="true">
+                            </p-calendar>
+                        </div>
+                        <div class="p-col-4">
+                            <span>TC</span>
+                            <input type="text" pInputText formControlName="TC" maxlength="60">
+                        </div>
+                        <div class="p-col-4">
+                            <span>Meu INSS</span>
+                            <input type="text" pInputText formControlName="MEU_INSS" maxlength="10">
+                        </div>
+                        <div class="p-col-4">
+                            <span>APS</span>
+                            <input type="text" pInputText formControlName="APS" maxlength="100">
+                        </div>
+                        <div class="p-col-4">
+                            <span>OP</span>
+                            <input type="text" pInputText formControlName="OP" maxlength="100">
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+        </p-tabPanel>
+        <p-tabPanel header="Endereço/Contato">
+            <div class="ui-fluid">
+                <div class="p-grid">
+                    <div class="p-col-4">
+                        <span>Endereço</span>
+                        <input type="text" pInputText formControlName="ENDERECO" maxlength="80">
+                    </div>
+                    <div class="p-col-1">
+                        <span>Número</span>
+                        <input type="text" pInputText formControlName="END_NRO" maxlength="10">
+                    </div>
+                    <div class="p-col-3">
+                        <span>Complemento</span>
+                        <input type="text" pInputText formControlName="COMPLEMENTO" maxlength="40">
+                    </div>
+                    <div class="p-col-3">
+                        <span>Bairro</span>
+                        <input type="text" pInputText formControlName="BAIRRO" maxlength="60">
+                    </div>
+                    <div class="p-col-3">
+                        <span>CEP</span>
+                        <p-inputMask formControlName="CEP" mask="99.999-999" unmask='true'></p-inputMask>
+                    </div>
+                    <div class="p-col-3">
+                        <span>E-mail</span>
+                        <input type="text" pInputText formControlName="EMAIL" maxlength="50">
+                    </div>
+                    <div class="p-col-3">
+                        <span>Telefone</span>
+                        <input type="text" pInputText formControlName="TELEFONE" maxlength="30">
+                    </div>
+                </div>
+            </div>
+            <p-panel header="Telefones para Contato">
+                <button pButton type="button" label="Novo" (click)="novoContato()" class="ui-button-secondary"></button>
+                <p-table [value]="contatos" [resizableColumns]="true" [paginator]="true" [rows]="25"
+                    [loading]="pesquisando">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Telefone</th>
+                            <th style='width: 120px'>Ações</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-contato>
+                        <tr>
+                            <td>{{contato.descricao}}</td>
+                            <td>{{contato.telefone}}</td>
+                            <td style='text-align: center;'>
+                                <a routerLink='/contato/{{ contato.contato_id }}'>
+                                    <span class='pi pi-pencil' style='font-size: x-large'></span>
+                                </a>
+                                <a (click)="excluir(contato)">
+                                    <span class='pi pi-trash' style='font-size: x-large'></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="3">
+                                <div style="padding: 20px">
+                                    Nenhum telefone listado
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </p-panel>
+        </p-tabPanel>
+        <p-tabPanel header="Observações">
+            <p-editor formControlName="editor" [(ngModel)]="textoEditor" [style]="{'height':'500px'}"></p-editor>
+        </p-tabPanel>
+    </p-tabView>
+</form>
+<br>
+<div class='controles'>
+    <button pButton type="button" label="Salvar" [disabled]="formCliente.invalid" (click)="salvar()"
+        class="ui-button-success"></button>
+    <button pButton type="button" label="Cancelar" (click)="cancelar()" class="ui-button-secondary"></button>
+</div>
+<p-dialog [(visible)]="showContato" modal="modal" width="400" height="150" header="Informar o contato" [closable]="true"
+    [showHeader]="true">
+    <form [formGroup]="formContato">
+        <div class="ui-fluid">
+            <div class="p-grid">
+                <div class="p-col-6">
+                    <span>Descrição</span>
+                    <input type="text" pInputText formControlName="descricao" maxlength="80">
+                </div>
+                <div class="p-col-6">
+                    <span>Telefone</span>
+                    <input type="text" pInputText formControlName="telefone" maxlength="30">
+                </div>
+            </div>
+        </div>
+        <div class='controles'>
+            <button pButton type="button" label="Salvar" [disabled]="formContato.invalid" (click)="salvarContato()"
+                class="ui-button-success"></button>
+            <button pButton type="button" label="Cancelar" (click)="showContato=false"
+                class="ui-button-secondary"></button>
+        </div>
+    </form>
+</p-dialog>

@@ -1,0 +1,12 @@
+.nome-sistema {
+    color: #EEE;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.nome-sistema:hover {
+    color: white;
+}

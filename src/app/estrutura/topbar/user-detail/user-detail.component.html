@@ -1,0 +1,19 @@
+<a href="javascript:void(0)" class="profile" (click)="app.onTopbarMenuButtonClick($event)">
+    <span class="username">{{ usuario().usuario_nome }}</span>
+    <img [src]="imageSrc" style="max-width:50px;max-height:50px"/>
+    <i class="pi pi-chevron-down"></i>
+</a>
+<ul class="topbar-menu fadeInDown" [ngClass]="{'topbar-menu-visible': app.topbarMenuActive}">
+    <li>
+        <a href="javascript:void(0)" (click)="edituser($event)">
+            <i class="topbar-icon pi pi-user-edit"></i>
+            <span class="topbar-item-name">Perfil</span>
+        </a>
+    </li>
+    <li>
+        <a href="javascript:void(0)" (click)="logout($event)">
+            <i class="topbar-icon pi pi-sign-out"></i>
+            <span class="topbar-item-name">Logout</span>
+        </a>
+    </li>
+</ul>

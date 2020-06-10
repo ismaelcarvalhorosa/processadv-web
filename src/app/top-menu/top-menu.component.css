@@ -1,0 +1,27 @@
+.toolbar {
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    left: 0;
+    right: 0;
+    height: 77px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    background-color:#314d5e;
+    color: white;
+    font-weight: 600;
+}
+
+.toolbar img {
+    margin: 0 16px;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.toolbar a {
+    color: white;
+    text-decoration: none;
+}

@@ -1,0 +1,38 @@
+<h3>Configurações Gerais</h3>
+<p-panel header="Identificação">
+    <form [formGroup]="formConfig">
+        <div class="ui-fluid">
+            <div class="p-grid">
+                <div>
+                    <span>Logotipo</span>
+                    <br>
+                    <img [src]="imageSrc" style="max-width:300px;max-height:300px"/>
+                    <br>
+                    <input formControlName="logotipo" type="file" accept="image/*" (change)="handleInputChange($event)" />
+                </div>
+                <div class="p-col-12"></div>
+                <div class="p-col-7">
+                    <span>Nome</span>
+                    <input type="text" pInputText formControlName="nome" maxlength="300">
+                </div>
+                <div class="p-col-7">
+                    <span>Endereço</span>
+                    <input type="text" pInputText formControlName="endereco" maxlength="100">
+                </div>
+                <div class="p-col-2">
+                    <span>Contato</span>
+                    <input type="text" pInputText formControlName="contato" maxlength="20">
+                </div>
+                <div class="p-col-4">
+                    <span>Contador</span>
+                    <input type="text" pInputText formControlName="contador" maxlength="100">
+                </div>
+            </div>
+        </div>
+    </form>
+</p-panel>
+<br>
+<div class='controles'>
+    <button pButton type="button" label="Salvar" [disabled]="formConfig.invalid" (click)="salvar()" class="ui-button-success"></button>
+    <button pButton type="button" label="Cancelar" (click)="cancelar()" class="ui-button-secondary"></button>
+</div>
