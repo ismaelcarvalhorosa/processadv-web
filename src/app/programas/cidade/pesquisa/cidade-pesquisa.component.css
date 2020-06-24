@@ -1,0 +1,11 @@
+.controles {
+    margin-bottom: 10px;
+}
+
+.controles button {
+    margin-right: 10px;
+}
+
+a:hover {
+    cursor:pointer;
+}

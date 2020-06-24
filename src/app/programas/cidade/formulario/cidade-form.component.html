@@ -1,0 +1,32 @@
+<div class='controles'>
+    <button pButton type="button" label="Pesquisar" routerLink='/cidade/pesquisa'
+        class="ui-button-secondary"></button>
+    <button pButton type="button" label="Novo" (click)="novo()" class="ui-button-secondary"></button>
+    <button pButton type="button" label="Excluir" (click)="excluir()" class="ui-button-danger"
+        *ngIf='editando'></button>
+</div>
+<p-panel header="Identificação">
+    <form [formGroup]="formCidade">
+        <div class="ui-fluid">
+            <div class="p-grid">     
+                <div class="p-col-2">
+                    Código
+                    <input type="text" pInputText formControlName="cidade_id">
+                </div>        
+                <div class="p-col-7">
+                    <span style='color: blue;'>Cidade</span>
+                    <input type="text" pInputText formControlName="cidade_nome" maxlength="60">
+                </div>  
+                <div class="p-col-2">
+                    <span style='color: blue;'>Estado(UF)</span>                    
+                    <p-dropdown [options]="ufs" optionLabel="value" dataKey="key" formControlName="cidade_uf" filter="true"></p-dropdown>
+                </div>                                        
+            </div>
+        </div>
+    </form>
+</p-panel>
+<br>
+<div class='controles'>
+    <button pButton type="button" label="Salvar" [disabled]="formCidade.invalid" (click)="salvar()" class="ui-button-success"></button>
+    <button pButton type="button" label="Cancelar" (click)="cancelar()" class="ui-button-secondary"></button>
+</div>

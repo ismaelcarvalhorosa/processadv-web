@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./programas/usuario/usuario.module').then(mod => mod.UsuarioModule),
   },
   {
+  path: 'cidade',
+  loadChildren: () => import('./programas/cidade/cidade.module').then(mod => mod.CidadeModule),
+  },
+  {
     path: 'inicio',
     loadChildren: () => import('./pagina-inicial/pagina-inicial.module').then(mod => mod.PaginaInicialModule),
   },

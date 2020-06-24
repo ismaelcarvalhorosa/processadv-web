@@ -16,7 +16,7 @@ export class SideMenuComponent implements OnInit {
       label: 'Cadastros',
       items: [
         { label: 'Página Inicial', icon: 'pi pi-fw pi-home', routerLink: '/inicio' },
-        { label: 'Clientes', icon: 'pi pi-fw pi-chevron-circle-right', routerLink: '/cliente/pesquisa' }
+        { label: 'Clientes', icon: 'pi pi-fw pi-chevron-circle-right', routerLink: '/cliente/pesquisa' },
       ]
     }];
   }
