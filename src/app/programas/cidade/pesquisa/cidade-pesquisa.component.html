@@ -1,0 +1,54 @@
+<div>
+    <div class="p-grid">
+        <div class="p-col-fixed" style='width: 160px'>
+            <button pButton type="button" label="Incluir" routerLink='/cidade/novo' class="ui-button-success"></button>
+        </div>
+        <div class="p-col ui-fluid">
+            <form [formGroup]="formPesquisa">
+                <div class="ui-inputgroup">
+                    <input type="text" pInputText formControlName="valorPesquisa" placeholder="pesquisar por código ou nome...">
+                </div>
+                <br>
+                <div class="ui-inputgroup">
+                    <button pButton type="button" icon='pi pi-search' (click)='pesquisar()'></button>
+                    <button pButton type="button" label="Limpar filtro" (click)='limparPesquisa()'
+                        class="ui-button-secondary"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<p-table [value]="cidades" [resizableColumns]="true" [paginator]="true" [rows]="25" [loading]="pesquisando">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 150px">Código</th>
+            <th>Nome</th>
+            <th>Estados(Uf)</th>
+            <th style='width: 120px'>Ações</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cidade>
+        <tr>
+            <td>{{cidade.cidade_id}}</td>
+            <td>{{cidade.cidade_nome}}</td>
+            <td>{{cidade.cidade_uf}}</td>
+            <td style='text-align: center;'>
+                <a routerLink='/cidade/{{ cidade.cidade_id }}'>
+                    <span class='pi pi-pencil' style='font-size: x-large'></span>
+                </a>
+                <a (click)="excluir(cidade)">
+                    <span class='pi pi-trash' style='font-size: x-large'></span>
+                </a>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="4">
+                <div style="padding: 20px">
+                    Nenhum registro listado
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

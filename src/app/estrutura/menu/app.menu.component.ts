@@ -25,6 +25,7 @@ export class AppMenuComponent implements OnInit {
     this.model = [
       { label: 'Página Inicial', icon: 'pi pi-fw pi-home', routerLink: '/inicio' },
       { label: 'Clientes', icon: 'pi pi-fw pi-chevron-circle-right', routerLink: '/cliente/pesquisa' },
-      { label: 'Usuários', icon: 'pi pi-fw pi-users', routerLink: '/usuario/pesquisa' }];
+      { label: 'Usuários', icon: 'pi pi-fw pi-users', routerLink: '/usuario/pesquisa' },
+      { label: 'Cidades', icon: 'pi pi-fw pi-map-marker', routerLink: '/cidade/pesquisa' }];
   }
 }
